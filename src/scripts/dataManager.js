@@ -17,6 +17,12 @@ const API = {
         })
             .then(response => response.json()) //the object that was just created
     },
+    deleteLog(log) {
+        return fetch(`http://localhost:3000/checkoutLog/${log}`, {
+            method: "DELETE",
+        })
+            .then(response => response.json())
+    },
 
 }
 export default API
