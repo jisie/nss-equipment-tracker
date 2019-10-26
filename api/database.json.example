@@ -1,4 +1,45 @@
 {
-    "types" : [],
-    "checkoutlog" : []
+    "types": [
+        {
+            "id": 1,
+            "Name": "Monitor"
+        },
+        {
+            "id": 2,
+            "Name": "Adapter"
+        },
+        {
+            "id": 3,
+            "Name": "Cord"
+        }
+    ],
+    "checkoutlog": [
+        {
+            "Id": 1,
+            "TypeId": 1,
+            "Date": "10/24/19",
+            "EquipmentNumber": "24-6",
+            "Instuctor": "Steve",
+            "Student": "",
+            "Returned": true
+        },
+        {
+            "Id": 1,
+            "TypeId": 1,
+            "Date": "10/24/19",
+            "EquipmentNumber": "24-6",
+            "Instuctor": "Steve",
+            "Student": "",
+            "Returned": true
+        },
+        {
+            "Id": 1,
+            "TypeId": 1,
+            "Date": "10/24/19",
+            "EquipmentNumber": "24-6",
+            "Instuctor": "Steve",
+            "Student": "",
+            "Returned": true
+        }
+    ]
 }
