@@ -69,12 +69,15 @@ const createLog = log => {
     div.appendChild(returned);
     div.appendChild(typeName)
     document.getElementById("logContainer").appendChild(div);
-}
+    const deleteButton = document.createElement("BUTTON");
+    deleteButton.innerHTML = "delete";
+    deleteButton.setAttribute("id", `delete--${log.Id}`);
+    document.getElementById("logContainer").appendChild(deleteButton);
 
 
 
-const equipFormHtml = (formInfo) => {
-    const equipForm = `
+    const equipFormHtml = (formInfo) => {
+        const equipForm = `
 
     <form>
     <ul>
@@ -111,11 +114,11 @@ const equipFormHtml = (formInfo) => {
             <input type="text" name="student" id="student">
             </fieldset>
             `
-    const containerDiv = document.getElementById("container");
-    containerDiv.innerHTML = equipForm;
-}
+        const containerDiv = document.getElementById("container");
+        containerDiv.innerHTML = equipForm;
+    }
 
-equipFormHtml();
+    equipFormHtml();
 
 // <fieldset>
 //     <label for="extraCord">Extra Cord</label>
