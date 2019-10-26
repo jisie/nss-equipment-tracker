@@ -4,7 +4,7 @@ const API = {
             .then(response => response.json())
     },
     logFetch() {
-        return fetch("http://localhost:3000/checkoutlog")
+        return fetch("http://localhost:3000/checkoutlogs")
             .then(response => response.json())
     },
 
