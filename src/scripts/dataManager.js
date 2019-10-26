@@ -4,25 +4,13 @@ const API = {
             .then(response => response.json())
     },
     logFetch() {
-        return fetch("http://localhost:3000/checkoutlog")
+        return fetch("http://localhost:3000/checkoutlogs")
             .then(response => response.json())
     },
-    submitLog(newLog) {
-        return fetch("http://localhost:3000/checkoutlog", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(newLog)
-        })
-            .then(response => response.json()) //the object that was just created
-    },
-    deleteLog(log) {
-        return fetch(`http://localhost:3000/checkoutLog/${log}`, {
-            method: "DELETE",
-        })
+    logAndTypeFetch() {
+        return fetch("http://localhost:3000")
             .then(response => response.json())
-    },
+    }
 
 }
 export default API
