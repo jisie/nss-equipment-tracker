@@ -47,7 +47,6 @@ const lookUpReturnedBoolean = (log) => {
 };
 
 const createLog = log => {
-
     const div = document.createElement("div");
     const id = document.createTextNode(`${log.Id}. `);
     const date = document.createTextNode(`Date: ${log.Date} `);         // Create a text node
@@ -56,22 +55,23 @@ const createLog = log => {
     const student = document.createTextNode(`Student: ${log.Student} `);
     const returnedResult = lookUpReturnedBoolean(log);
     const returned = document.createTextNode(`Status: ${returnedResult} `);
-    let typeNameText;
-    API.singleTypeFetch(log.TypeId).then(type => {
-        typeNameText = type.Name
+    API.typeFetch().then(types => {
+        types.forEach(type => {
+            if (type.id === log.TypeId) {
+                console.log(type.Name)
+                const typeName = document.createTextNode(type.Name)
+                div.appendChild(typeName)
+            }
+        });
     })
-    const typeName = document.createTextNode(typeNameText);         // Create a text node
     div.appendChild(id)
     div.appendChild(date);
     div.appendChild(equipmentNum);
     div.appendChild(instructor);
     div.appendChild(student);
     div.appendChild(returned);
-    div.appendChild(typeName)
     document.getElementById("logContainer").appendChild(div);
 }
-
-
 
 const equipFormHtml = (formInfo) => {
     const equipForm = `
