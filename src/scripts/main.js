@@ -6,6 +6,9 @@ API.typeFetch().then(types => {
 API.logFetch().then(checkoutLogs => {
     renderLogs(checkoutLogs);
 });
+// API.logAndTypeFetch().then(database => {
+//     renderTypeName(database);
+// })
 const renderLogs = (logs) => {
     logs.forEach(log => {
         createLog(log);
@@ -15,6 +18,15 @@ const renderTypes = (types) => {
     types.forEach(type => {
         createTypeListItem(type);
     });
+};
+let typeName = ""
+const renderTypeName = (database) => {
+database.checkoutLogs.forEach(log => {
+    database.types.forEach(type)
+    if (log.typeId === type.Id) {
+         typeName = Type.Name;
+    }
+})
 };
 
 const createTypeListItem = type => {
@@ -36,11 +48,15 @@ const createLog = log => {
     var div = document.createElement("div");                 // Create a <li> node
     var id = document.createTextNode(`${log.Id}. `);         // Create a text node
     var date = document.createTextNode(`Date: ${log.Date} `);         // Create a text node
+    var name = document.createTextNode(`Name: ${log.name} `);         // Create a text node
     var equipmentNum = document.createTextNode(`Equipment Number: ${log.EquipmentNumber} `);         // Create a text node
     var instructor = document.createTextNode(`Instructor: ${log.Instructor} `);         // Create a text node
     var student = document.createTextNode(`Student: ${log.Student} `); 
     var returnedResult = lookUpReturnedBoolean(log);
     var returned = document.createTextNode(`Status: ${returnedResult} `);
+    API.logAndTypeFetch().then(database => {
+            renderTypeName(database);
+    }),
     div.appendChild(id);                            // Append the text to <li>
     div.appendChild(date);                            // Append the text to <li>
     div.appendChild(equipmentNum);                            // Append the text to <li>
