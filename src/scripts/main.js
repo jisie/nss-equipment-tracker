@@ -64,7 +64,8 @@ const createLog = log => {
     div.appendChild(student);                            // Append the text to <li>
     div.appendChild(returned);                            // Append the text to <li>
     document.getElementById("logContainer").appendChild(div);
-
+    const deleteButton = document.createElement("button");
+    div.appendChild(deleteButton);
 };
 
 

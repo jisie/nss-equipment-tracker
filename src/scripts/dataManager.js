@@ -10,7 +10,26 @@ const API = {
     logAndTypeFetch() {
         return fetch("http://localhost:3000")
             .then(response => response.json())
-    }
-
+    },
+    deleteLog(Id) {
+        //    const entryBody = JSON.stringify(newJournalEntry)
+        //    console.log(entryBody)
+        return fetch(`http://localhost:3000/checkoutlogs/${Id}`, {
+            method: "DELETE",
+        })
+            .then(response => response.json())
+    },
+    submitLog(newLog) {
+        //    const entryBody = JSON.stringify(newJournalEntry)
+        //    console.log(entryBody)
+        return fetch("http://localhost:3000/checkoutlogs", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(newLog)
+        })
+            .then(response => response.json()) //the object that was just created
+    },
 }
 export default API
