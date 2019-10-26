@@ -30,9 +30,9 @@ database.checkoutLogs.forEach(log => {
 };
 
 const createTypeListItem = type => {
-    var node = document.createElement("option");                 // Create a <li> node
-    var textnode = document.createTextNode(type.Name);         // Create a text node
-    node.appendChild(textnode);                            // Append the text to <li>
+    var node = document.createElement("option"); // Create a <li> node
+    var textnode = document.createTextNode(type.Name); // Create a text node
+    node.appendChild(textnode); // Append the text to <li>
     document.getElementById("typeDropDown").appendChild(node);
 };
 
@@ -71,14 +71,14 @@ const createLog = log => {
 const equipFormHtml = (formInfo) => {
     const equipForm = `
 
-        <ul>
-            <li><a href="default.asp">Home</a></li>
-            <li><a href="news.asp">News</a></li>
-            <li><a href="contact.asp">Contact</a></li>
-            <li><a href="about.asp">About</a></li>
-        </ul>
-        <form>
-            <fieldset>
+    <form>
+    <ul>
+        <li><a href="default.asp">Home</a></li>
+        <li><a href="news.asp">News</a></li>
+        <li><a href="contact.asp">Contact</a></li>
+        <li><a href="about.asp">About</a></li>
+    </ul>
+    <fieldset>
                 <label for="checkOutDate">Date</label>
                 <input type="date" name="checkOutDate" id="checkOutDate">
             </fieldset>
@@ -95,29 +95,29 @@ const equipFormHtml = (formInfo) => {
                 </select>
             </fieldset>
 
+            
             <fieldset>
-                <label for="extraCord">Extra Cord</label>
-                <input type="text" name="extraCord" id="extraCord">
+            <label for="instructor">Instructor</label>
+            <input type="text" name="instructor" id="instructor">
             </fieldset>
             
             <fieldset>
-                <label for="adapterType">Adapter Type</label>
-                <input type="text" name="adapterType" id="adapterType">
+            <label for="student">Student</label>
+            <input type="text" name="student" id="student">
             </fieldset>
-            
-            <fieldset>
-                <label for="instructor">Instructor</label>
-                <input type="text" name="instructor" id="instructor">
-            </fieldset>
-            
-            <fieldset>
-                <label for="student">Student</label>
-                <input type="text" name="student" id="student">
-                </fieldset>
-                `
+            `
     const containerDiv = document.getElementById("container");
     containerDiv.innerHTML = equipForm;
 }
 
 equipFormHtml();
 
+// <fieldset>
+//     <label for="extraCord">Extra Cord</label>
+//     <input type="text" name="extraCord" id="extraCord">
+// </fieldset>
+
+// <fieldset>
+//     <label for="adapterType">Adapter Type</label>
+//     <input type="text" name="adapterType" id="adapterType">
+// </fieldset>
