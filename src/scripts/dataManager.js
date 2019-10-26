@@ -7,7 +7,7 @@ const API = {
         return fetch("http://localhost:3000/checkoutlog")
             .then(response => response.json())
     },
-    submit(newLog) {
+    submitLog(newLog) {
         return fetch("http://localhost:3000/checkoutlog", {
             method: "POST",
             headers: {
