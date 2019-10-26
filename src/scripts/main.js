@@ -40,6 +40,8 @@ const equipFormHtml = (formInfo) => {
             <fieldset>
                 <label for="eqipType">Type</label>
                 <selector type="text" name="eqipType" id="eqipType">
+                <select id="typeDropDown">
+                </select>
             </fieldset>
 
             <fieldset>
