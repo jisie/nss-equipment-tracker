@@ -1,7 +1,7 @@
 body {
   background-color:  rgb(241, 227, 215);
   margin: 100;
-  border-style: groove;
+  border-style: inherit;
   border-radius: 50px;
 }
 
