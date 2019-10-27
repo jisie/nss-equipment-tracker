@@ -1,5 +1,44 @@
 import API from "./dataManager.js"
 
+const equipFormHtml = (formInfo) => {
+    const equipForm = `
+
+<fieldset>
+            <label for="checkOutDate">Date</label>
+            <input type="date" name="checkOutDate" id="checkOutDate">
+        </fieldset>
+
+        <fieldset>
+            <label for="epipNum">Equipment #</label>
+            <input type="text" name="epipNum" id="epipNum">
+        </fieldset>
+        
+        <fieldset>
+            <label for="eqipType">Type</label>
+            <selector type="text" name="eqipType" id="eqipType">
+            <select id="typeDropDown">
+            </select>
+        </fieldset>
+
+        
+        <fieldset>
+        <label for="instructor">Instructor</label>
+        <input type="text" name="instructor" id="instructor">
+        </fieldset>
+        
+        <fieldset>
+        <label for="student">Student</label>
+        <input type="text" name="student" id="student">
+        </fieldset>
+
+        <button id = "add-equip-button">Save</button>
+        `
+    const containerDiv = document.getElementById("container");
+    containerDiv.innerHTML = equipForm;
+}
+
+equipFormHtml();
+
 API.typeFetch().then(types => {
     renderTypes(types);
 });
@@ -7,11 +46,31 @@ API.logFetch().then(checkoutLogs => {
     renderLogs(checkoutLogs);
 });
 
+document.querySelector("#add-equip-button").addEventListener("click", event => {
+    const newLogEntry = {
+        "TypeId": Number(document.querySelector("#typeDropDown").value),
+        "Date": document.querySelector("#checkOutDate").value,
+        "EquipmentNumber": document.querySelector("#epipNum").value,
+        "Instuctor": document.querySelector("#instructor").value,
+        "Student": document.querySelector("#student").value,
+        "Returned": false
+    }
+    console.log(newLogEntry)
+
+    API.submitLog(newLogEntry)
+    .then(response => API.logFetch())
+    .then(checkoutLogs => {
+        document.getElementById("logContainer").innerHTML = ""
+        renderLogs(checkoutLogs);
+    })
+})
+
 // API.logAndTypeFetch().then(database => {
 //     renderTypeName(database);
 // })
 
 const renderLogs = (logs) => {
+    // console.log(logs)
     logs.forEach(log => {
         createLog(log);
     });
@@ -34,6 +93,7 @@ const renderTypes = (types) => {
 const createTypeListItem = type => {
     var node = document.createElement("option"); // Create a <li> node
     var textnode = document.createTextNode(type.Name); // Create a text node
+    node.setAttribute("value", type.id);
     node.appendChild(textnode); // Append the text to <li>
     document.getElementById("typeDropDown").appendChild(node);
 };
@@ -72,56 +132,24 @@ const createLog = log => {
     div.appendChild(returned);
     document.getElementById("logContainer").appendChild(div);
     const deleteButton = document.createElement("BUTTON");
-    deleteButton.innerHTML = "delete";
-    deleteButton.setAttribute("id", `delete--${log.Id}`);
+    deleteButton.innerHTML = "Return";
+    deleteButton.setAttribute("id", `delete--${log.id}`);
     document.getElementById("logContainer").appendChild(deleteButton);
 
-
-
-    const equipFormHtml = (formInfo) => {
-        const equipForm = `
-
-    <form>
-    <ul>
-        <li><a href="default.asp">Home</a></li>
-        <li><a href="news.asp">News</a></li>
-        <li><a href="contact.asp">Contact</a></li>
-        <li><a href="about.asp">About</a></li>
-    </ul>
-    <fieldset>
-                <label for="checkOutDate">Date</label>
-                <input type="date" name="checkOutDate" id="checkOutDate">
-            </fieldset>
-
-            <fieldset>
-                <label for="epipNum">Equipment #</label>
-                <input type="text" name="epipNum" id="epipNum">
-            </fieldset>
-            
-            <fieldset>
-                <label for="eqipType">Type</label>
-                <selector type="text" name="eqipType" id="eqipType">
-                <select id="typeDropDown">
-                </select>
-            </fieldset>
-
-            
-            <fieldset>
-            <label for="instructor">Instructor</label>
-            <input type="text" name="instructor" id="instructor">
-            </fieldset>
-            
-            <fieldset>
-            <label for="student">Student</label>
-            <input type="text" name="student" id="student">
-            </fieldset>
-            `
-        const containerDiv = document.getElementById("container");
-        containerDiv.innerHTML = equipForm;
-    }
-
-    equipFormHtml();
 }
+
+
+document.getElementById("logContainer").addEventListener("click", event => {
+    const equipId = event.target.id.split("delete--")[1]
+    console.log(equipId)
+
+    API.deleteLog(equipId)
+    .then(response => API.logFetch())
+    .then(checkoutLogs => {
+        document.getElementById("logContainer").innerHTML = ""
+        renderLogs(checkoutLogs);
+    })
+})
 // <fieldset>
 //     <label for="extraCord">Extra Cord</label>
 //     <input type="text" name="extraCord" id="extraCord">
