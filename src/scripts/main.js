@@ -49,9 +49,9 @@ const lookUpReturnedBoolean = (log) => {
 const createLog = log => {
     const div = document.createElement("div");
     const id = document.createTextNode(`${log.Id}. `);
-    const date = document.createTextNode(`Date: ${log.Date} `);         // Create a text node
-    const equipmentNum = document.createTextNode(`Equipment Number: ${log.EquipmentNumber} `);         // Create a text node
-    const instructor = document.createTextNode(`Instructor: ${log.Instructor} `);         // Create a text node
+    const date = document.createTextNode(`Date: ${log.Date} `); // Create a text node
+    const equipmentNum = document.createTextNode(`Equipment Number: ${log.EquipmentNumber} `); // Create a text node
+    const instructor = document.createTextNode(`Instructor: ${log.Instructor} `); // Create a text node
     const student = document.createTextNode(`Student: ${log.Student} `);
     const returnedResult = lookUpReturnedBoolean(log);
     const returned = document.createTextNode(`Status: ${returnedResult} `);
@@ -121,7 +121,7 @@ const createLog = log => {
     }
 
     equipFormHtml();
-
+}
 // <fieldset>
 //     <label for="extraCord">Extra Cord</label>
 //     <input type="text" name="extraCord" id="extraCord">

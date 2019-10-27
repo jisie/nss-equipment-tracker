@@ -11,13 +11,11 @@ const API = {
         return fetch("http://localhost:3000")
             .then(response => response.json())
     },
-<<<<<<< HEAD
 
     singleTypeFetch(id) {
         return fetch(`http://localhost:3000/types/${id}`)
             .then(response => response.json())
-    }
-=======
+    },
     deleteLog(Id) {
         //    const entryBody = JSON.stringify(newJournalEntry)
         //    console.log(entryBody)
@@ -38,6 +36,5 @@ const API = {
         })
             .then(response => response.json()) //the object that was just created
     },
->>>>>>> 2ebd33f29a8fb8c15489b195bfd67a8096f9be43
 }
 export default API
