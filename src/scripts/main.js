@@ -114,7 +114,7 @@ const createLog = log => {
     const instructor = document.createTextNode(`Instructor: ${log.Instuctor} `); // Create a text node
     const student = document.createTextNode(`Student: ${log.Student} `);
     const returnedResult = lookUpReturnedBoolean(log);
-    const returned = document.createTextNode(`Status: ${log.Returned} `);
+    const returned = document.createTextNode(`Returned: ${log.Returned} `);
     API.typeFetch().then(types => {
         types.forEach(type => {
             if (type.id === log.TypeId) {
