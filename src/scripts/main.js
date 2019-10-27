@@ -2,36 +2,36 @@ import API from "./dataManager.js"
 
 const equipFormHtml = (formInfo) => {
     const equipForm = `
+    <section class = "equip-form">
 
-<fieldset>
+
             <label for="checkOutDate">Date</label>
             <input type="date" name="checkOutDate" id="checkOutDate">
-        </fieldset>
+        
 
-        <fieldset>
+            <br/>
             <label for="epipNum">Equipment #</label>
             <input type="text" name="epipNum" id="epipNum">
-        </fieldset>
         
-        <fieldset>
+        
+        
             <label for="eqipType">Type</label>
             <selector type="text" name="eqipType" id="eqipType">
             <select id="typeDropDown">
             </select>
-        </fieldset>
+        
 
         
-        <fieldset>
+        
         <label for="instructor">Instructor</label>
         <input type="text" name="instructor" id="instructor">
-        </fieldset>
         
-        <fieldset>
+        
         <label for="student">Student</label>
         <input type="text" name="student" id="student">
-        </fieldset>
 
         <button id = "add-equip-button">Save</button>
+        </section>
         `
     const containerDiv = document.getElementById("container");
     containerDiv.innerHTML = equipForm;
@@ -107,14 +107,14 @@ const lookUpReturnedBoolean = (log) => {
 };
 
 const createLog = log => {
+    console.log(log)
     const div = document.createElement("div");
-    const id = document.createTextNode(`${log.Id}. `);
     const date = document.createTextNode(`Date: ${log.Date} `); // Create a text node
     const equipmentNum = document.createTextNode(`Equipment Number: ${log.EquipmentNumber} `); // Create a text node
-    const instructor = document.createTextNode(`Instructor: ${log.Instructor} `); // Create a text node
+    const instructor = document.createTextNode(`Instructor: ${log.Instuctor} `); // Create a text node
     const student = document.createTextNode(`Student: ${log.Student} `);
     const returnedResult = lookUpReturnedBoolean(log);
-    const returned = document.createTextNode(`Status: ${returnedResult} `);
+    const returned = document.createTextNode(`Status: ${log.Returned} `);
     API.typeFetch().then(types => {
         types.forEach(type => {
             if (type.id === log.TypeId) {
@@ -124,7 +124,6 @@ const createLog = log => {
             }
         });
     })
-    div.appendChild(id)
     div.appendChild(date);
     div.appendChild(equipmentNum);
     div.appendChild(instructor);
